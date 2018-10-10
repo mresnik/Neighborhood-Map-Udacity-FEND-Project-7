@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
-//import * from './images';
-////  <i class="listIcon" style="line-height: inherit;">clear</i>
 class TopNav extends Component {
 
 componentDidMount() {
   this.addListener()
 }
   /*
-   * Open the drawer when the menu ison is clicked.
+   * Open the drawer when the menu icon is clicked.
    */
 
 addListener=() => {
   var menu = document.querySelector('#menu');
-//  var main = document.querySelector('main');
   var drawer = document.querySelector('.locations-list');
 
   menu.addEventListener('click', function(e) {
     drawer.classList.toggle('open');
     e.stopPropagation();
   });
-//  main.addEventListener('click', function() {
-//    drawer.classList.remove('open');
-//  })
 }
 
-
-
   render() {
-
-
 
     return (
       <nav className="topNav" >
@@ -46,12 +36,10 @@ addListener=() => {
           <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
         </svg>
       </button>
-
         </div>
       </nav>
     )
   }
 }
-
 
 export default TopNav;

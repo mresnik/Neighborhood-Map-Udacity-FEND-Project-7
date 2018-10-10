@@ -1,3 +1,7 @@
+/*
+ * This file includes the meeting days, times, meeting name, and format
+ */
+
 export default [
   {
     day: 'Sunday',

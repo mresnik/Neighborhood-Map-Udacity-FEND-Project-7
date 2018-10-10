@@ -1,4 +1,8 @@
-export default [
+/*
+ * This file includes the locations of the meetings
+ */
+
+ export default [
   {
     name: 'Bruta Center',
     address: '221 Highland Ave',

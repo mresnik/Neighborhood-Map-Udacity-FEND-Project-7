@@ -1,6 +1,4 @@
-import React, {
-    Component
-} from 'react';
+import React, {Component} from 'react';
 import ReactModal from 'react-modal';
 
 class CoffeeModal extends Component {

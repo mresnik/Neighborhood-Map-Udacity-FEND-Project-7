@@ -1,0 +1,55 @@
+@media screen and (max-width: 900px) {
+  .Modal {
+         height: 35%;
+         position: absolute;
+         left: 2%;
+         top: 58%;
+         width: 400px;
+         max-width: 85%;
+       }
+ .locations-list {
+        height: 40%;
+      }
+  .locations-list-inner {
+        height: 97%;
+        position: absolute;
+        width: 96%;
+        overflow-y: scroll;
+      }
+}
+
+@media screen and (max-width: 483px) {
+  #navName {
+    font-size: 1.25em;
+  }
+
+  #navSubName {
+    margin: 0px 0px 0px 20px;
+    font-size: .9em;
+  }
+}
+
+@media screen and (max-width: 447px) {
+  #navText {
+    width: 60%;
+  }
+  #navName {
+    font-size: 1em;
+  }
+
+  #navSubName {
+    margin: 0px 0px 0px 20px;
+    font-size: .8em;
+  }
+}
+
+@media screen and (max-width: 398px) {
+  #navName {
+    font-size: 1em;
+  }
+
+  #navSubName {
+    margin: 0px 0px 0px 20px;
+    font-size: .8em;
+  }
+}

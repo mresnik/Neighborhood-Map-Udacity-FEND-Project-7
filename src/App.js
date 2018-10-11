@@ -7,6 +7,7 @@ import TextList from './TextList';
 import TopNav from './TopNav';
 import Icon from './images/NAIcon.png';
 import CoffeeModal from './CoffeeModal';
+import ErrorModal from './ErrorModal';
 
 class App extends Component {
 constructor(props) {
@@ -15,6 +16,7 @@ constructor(props) {
     coffee:[],
     closeCoffee:[],
     showModal:false,
+    showErrorModal:false,
     modalInfoId: '',
     markers: []
   };
@@ -34,6 +36,11 @@ constructor(props) {
     this.setState({showModal : newState})
   }
 
+  showTheErrorModal = (newState) => {
+    this.setState({showErrorModal : newState})
+  }
+
+
   createMap = () => {
     loadMapScript("https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBSLwJS2xc6mbIZlAawcLmhtc_lq3aLL0c&callback=initMap")
     window.initMap = this.initMap;
@@ -47,6 +54,13 @@ constructor(props) {
   })
 
   let infowindow = new window.google.maps.InfoWindow();
+
+  //// TODO: For future version instead of having an API call for each location
+  //// I would have on call to get coffee shops for the entire area. For each
+  //// location I would then calculate the closest coffee shops - perhaps using
+  //// the code at https://www.geodatasource.com/developers/javascript. This
+  //// would reduce API calls and also make the error handling much better since
+  //// there would potentially be one Foursquare error instead of sixteen
   for (let i = 0; i < locationsData.length; i++) {
     let location = locationsData[i].location;
     fetch('https://api.foursquare.com/v2/venues/explore?client_id=CXNU2AK1BGVEXHI1LV25QNNHJSYISS1ILQMDTCSZVOPDTJC2&client_secret=4N13WAF34TEZLHKYD0MS5QZ0AAOESW5MJV1ZMEQXJ0UKJUED&v=20180323&limit=3&ll='+location.lat+','+location.lng+'&query=coffee')
@@ -59,11 +73,7 @@ constructor(props) {
     )
     // Code for handling API response
     .catch(err => {
-      alert("Shoot! I'm having a problem loading Coffee Shop location info "+
-       "from Foursquare. Since I'm looking for coffee by 16 distinct meeting " +
-       "locations the chances are pretty good that you might need to click " +
-       "more than once."
-      )
+      this.showTheErrorModal(true)
     });
 
           // Get the position from the location array.
@@ -119,6 +129,8 @@ constructor(props) {
         <main id="map"></main>
         <TextList triggerMarker = {this.triggerMarker} showTheModal = {this.showTheModal} modalInfoId={this.state.modalInfoId} showModal = {this.state.showModal} modalInfo={this.modalInfo} locationsData = {locationsData} meetingsData = {meetingsData} markers= {this.state.markers} infowindow = {this.props.infowindow} map = {this.map} infowindowContent = {this.props.infowindowContent}/>
         <CoffeeModal showTheModal = {this.showTheModal} modalInfoId={this.state.modalInfoId} modalInfo={this.modalInfo} showModal = {this.state.showModal} locationsData = {locationsData}/>
+          <ErrorModal showTheErrorModal = {this.showTheErrorModal} showErrorModal = {this.state.showErrorModal}/>
+
       </div>
     )
   }

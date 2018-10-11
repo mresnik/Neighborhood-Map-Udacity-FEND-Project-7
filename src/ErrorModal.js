@@ -1,27 +1,25 @@
 import React, {Component} from 'react';
 import ReactModal from 'react-modal';
 
-class CoffeeModal extends Component {
+class ErrorModal extends Component {
     constructor() {
         super();
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleOpenErrorModal = this.handleOpenErrorModal.bind(this);
+        this.handleCloseErrorModal = this.handleCloseErrorModal.bind(this);
     }
 
     // Shows the modal when list item is clicked
-    handleOpenModal() {
-        this.showTheModal(true);
+    handleOpenErrorModal() {
+        this.showTheErrorModal(true);
     }
 
     // Closes the modal when the overlay or close button are clicked
-    handleCloseModal() {
-        this.props.showTheModal(false);
+    handleCloseErrorModal() {
+        this.props.showTheErrorModal(false);
     }
 
     // Creates modal content
-    getInfo = () => {
-        let locationsData = this.props.locationsData;
-        let modalInfoId = this.props.modalInfoId;
+  /*  getInfo = () => {
         return (
             locationsData.map((location) => (
                 location.name === modalInfoId &&
@@ -33,103 +31,97 @@ class CoffeeModal extends Component {
                 p className = "ModalTitle" > Check out these places close to {
                     location.name
                 }
-                for a cup of coffee after the meeting: < /p>
-                <ul className = "VenueDetails" >
-                <li className = "ModalTitle" >
-                  {
+                for a cup of coffee after the meeting: < /p> <
+                ul className = "VenueDetails" >
+                <
+                li className = "ModalTitle" > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][0] &&
                     location.coffee[0][0].venue &&
                     location.coffee[0][0].venue.name
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][0] &&
                     location.coffee[0][0].venue &&
                     location.coffee[0][0].venue.location &&
                     location.coffee[0][0].venue.location.formattedAddress[0]
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][0] &&
                     location.coffee[0][0].venue &&
                     location.coffee[0][0].venue.location &&
                     location.coffee[0][0].venue.location.formattedAddress[1]
-                  }
-                </li>
-                </ul >
-                <ul className = "VenueDetails" >
-                <li className = "ModalTitle" >
-                  {
+                } <
+                /li> < /
+                ul > <
+                ul className = "VenueDetails" >
+                <
+                li className = "ModalTitle" > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][1] &&
                     location.coffee[0][1].venue &&
                     location.coffee[0][1].venue.name
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][1] &&
                     location.coffee[0][1].venue &&
                     location.coffee[0][1].venue.location &&
                     location.coffee[0][1].venue.location.formattedAddress[0]
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][1] &&
                     location.coffee[0][1].venue &&
                     location.coffee[0][1].venue.location &&
                     location.coffee[0][1].venue.location.formattedAddress[1]
-                  }
-                </li>
-                </ul>
-                <ul className = "VenueDetails">
-                <li className = "ModalTitle">
-                  {
+                } <
+                /li> < /
+                ul > <
+                ul className = "VenueDetails" >
+                <
+                li className = "ModalTitle" > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][2] &&
                     location.coffee[0][2].venue &&
                     location.coffee[0][2].venue.name
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][2] &&
                     location.coffee[0][2].venue &&
                     location.coffee[0][2].venue.location &&
                     location.coffee[0][2].venue.location.formattedAddress[0]
-                  }
-                </li>
-                <li>
-                  {
+                } <
+                /li> <
+                li > {
                     location.coffee &&
                     location.coffee[0] &&
                     location.coffee[0][2] &&
                     location.coffee[0][2].venue &&
                     location.coffee[0][2].venue.location &&
                     location.coffee[0][2].venue.location.formattedAddress[1]
-                  }
-                </li>
-                </ul>
-                </div>
+                } <
+                /li> < /
+                ul > <
+                /div>
             )))
-    }
+    }*/
 
     render() {
 
@@ -137,34 +129,29 @@ class CoffeeModal extends Component {
             div >
             <
             ReactModal isOpen = {
-                this.props.showModal
+                this.props.showErrorModal
             }
             contentLabel = "onRequestClose Example"
             onRequestClose = {
-                this.handleCloseModal
+                this.handleCloseErrorModal
             }
-            className = "Modal"
-            overlayClassName = "Overlay"
+            className = "ErrorModal"
+            overlayClassName = "ErrorOverlay"
             shouldCloseOnOverlayClick = {
                 true
             } >
-            <
-            this.getInfo / >
-
+            <p>Shoot!</p>
+            <p>I'm having a problem loading Coffee Shop location info
+            from Foursquare.</p>
+            <p>I am really sorry!</p>
             <
             button onClick = {
-                this.handleCloseModal
-            } > Close Modal < /button> <
-            img id = "foursquare"
-            alt = "Foursquare Logo"
-            src = {
-                require('./images/foursquare.png')
-            }
-            /> < /
-            ReactModal > <
-            /div>
+                this.handleCloseErrorModal
+            } > Close Modal < /button>  < /
+            ReactModal >
+            </div>
         );
     }
 }
 ReactModal.setAppElement('#root');
-export default CoffeeModal;
+export default ErrorModal;

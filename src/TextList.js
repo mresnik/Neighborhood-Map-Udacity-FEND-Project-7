@@ -18,22 +18,22 @@ class TextList extends Component {
   }
 
   updateMarkers = () => {
-    let locations = this.props.locationsData;
-    let markers = this.props.markers;
-    let modal = this.props.showTheModal;
-    let i = 0;
-    let modalinfo = this.props.modalInfo;
-    let theLocations = document.getElementsByClassName('location-name');
-      for(i = 0; i < theLocations.length; i++) {
+    const { locationsData, markers, showTheModal, modalInfo } = this.props;
+    const locations = locationsData;
+    const modal = showTheModal;
+    const modalinfo = modalInfo;
+    const theLocations = document.getElementsByClassName('location-name');
+    for(let i = 0; i < theLocations.length; i++) {
           theLocations[i].addEventListener("click", function() {
             modalinfo(this.innerHTML)
-            markers.map((marker) =>(
+            markers.map((marker) => (
               marker.title === this.innerHTML &&
-              setTimeout(function(){
+              setTimeout(function() {
               modal(true); }, 1) &&
               window.google.maps.event.trigger(marker, 'click')
             ))
-      })}
+      })
+    }
 
       markers.map((marker) => {
         marker.setVisible(false);
@@ -46,9 +46,10 @@ class TextList extends Component {
   }
 
 createLocation = () => {
-  let locations = this.props.locationsData;
-  let meetings = this.props.meetingsData;
-  let markers = this.props.markers;
+
+  const locations = this.props.locationsData;
+  const meetings = this.props.meetingsData;
+  const markers = this.props.markers;
   markers.map((marker) => {
     marker.setVisible(false);
     locations.map((location) => {
@@ -80,35 +81,45 @@ createLocation = () => {
   ))
 }
 
-  render() {
-
-    return (
-      <section className="locations-list open">
-        <div className="locations-list-inner">
-          <h1>Find Your Meeting</h1>
-                <div className="day-selector">
-                <label>
-                        Choose Day Of Week:
-                        <select id="dayofweek" value={this.state.value}
-                          onChange={this.handleChange}>
-                            <option value="a">All Days</option>
-                            <option value="m">Monday</option>
-                            <option value="t">Tuesday</option>
-                            <option value="w">Wednesday</option>
-                            <option value="h">Thursday</option>
-                            <option value="f">Friday</option>
-                            <option value="s">Saturday</option>
-                            <option value="u">Sunday</option>
-                        </select>
-                    </label>
-                </div>
-            <div>
-                <this.createLocation />
-            </div>
+render(){
+  const days = [
+    ['a', 'All Days'],
+    ['m', 'Monday'],
+    ['t', 'Tuesday'],
+    ['w', 'Wednesday'],
+    ['t', 'Thursday'],
+    ['f', 'Friday'],
+    ['s', 'Saturday'],
+    ['u', 'Sunday']
+  ];
+  const dropdownOptions = () => (
+    days.map(day => (
+      <option key={day[0]} value={day[0]}>{day[1]}</option>
+    ))
+  )
+  return (
+    <section className="locations-list open">
+      <div className="locations-list-inner">
+        <h1>Find Your Meeting</h1>
+        <div className="day-selector">
+          <label>
+            Choose Day Of Week:
+            <select
+              id="dayofweek"
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              {dropdownOptions()}
+            </select>
+          </label>
         </div>
-      </section>
-    )
-  }
+        <div>
+          <this.createLocation />
+        </div>
+      </div>
+    </section>
+  )
+}
 }
 
 export default TextList;

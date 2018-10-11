@@ -87,7 +87,7 @@ render(){
     ['m', 'Monday'],
     ['t', 'Tuesday'],
     ['w', 'Wednesday'],
-    ['t', 'Thursday'],
+    ['h', 'Thursday'],
     ['f', 'Friday'],
     ['s', 'Saturday'],
     ['u', 'Sunday']

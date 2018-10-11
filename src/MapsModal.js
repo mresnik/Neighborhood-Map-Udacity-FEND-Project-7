@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import ReactModal from 'react-modal';
 
-class ErrorModal extends Component {
+class MapsModal extends Component {
     constructor() {
         super();
-        this.handleOpenErrorModal = this.handleOpenErrorModal.bind(this);
-        this.handleCloseErrorModal = this.handleCloseErrorModal.bind(this);
+        this.handleOpenMapsModal = this.handleOpenMapsModal.bind(this);
+        this.handleCloseMapsModal = this.handleCloseMapsModal.bind(this);
     }
 
     // Shows the modal when there is an error
-    handleOpenErrorModal() {
-        this.showTheErrorModal(true);
+    handleOpenMapsModal() {
+        this.showTheMapsModal(true);
     }
 
     // Closes the modal when the overlay or close button are clicked
-    handleCloseErrorModal() {
-        this.props.showTheErrorModal(false);
+    handleCloseMapsModal() {
+        this.props.showTheMapsModal(false);
     }
 
     render() {
@@ -24,11 +24,11 @@ class ErrorModal extends Component {
             div >
             <
             ReactModal isOpen = {
-                this.props.showErrorModal
+                this.props.showMapsModal
             }
             contentLabel = "onRequestClose Example"
             onRequestClose = {
-                this.handleCloseErrorModal
+                this.handleCloseMapsModal
             }
             className = "ErrorModal"
             overlayClassName = "ErrorOverlay"
@@ -36,12 +36,11 @@ class ErrorModal extends Component {
                 true
             } >
             <p>Shoot!</p>
-            <p>I'm having a problem loading Coffee Shop location info
-            from Foursquare.</p>
+            <p>I'm having a problem loading the Google Maps Information.</p>
             <p>I am really sorry!</p>
             <
             button onClick = {
-                this.handleCloseErrorModal
+                this.handleCloseMapsModal
             } > Close Modal < /button>  < /
             ReactModal >
             </div>
@@ -49,4 +48,4 @@ class ErrorModal extends Component {
     }
 }
 ReactModal.setAppElement('#root');
-export default ErrorModal;
+export default MapsModal;

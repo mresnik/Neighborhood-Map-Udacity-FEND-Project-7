@@ -68,10 +68,11 @@ constructor(props) {
     return this.googleMapsPromise;
   }
 
+
   componentWillMount() {
     // Start Google Maps API loading since we know we'll soon need it
     this.getGoogleMaps();
-  }
+    }
 
   componentDidMount() {
     // Once the Google Maps API has finished loading, initialize the map
@@ -83,7 +84,6 @@ constructor(props) {
               mapTypeControl: false,
               center: uluru
             });
-
                   let infowindow = new window.google.maps.InfoWindow();
 
                   //// TODO: For future version instead of having an API call for each location
@@ -152,7 +152,12 @@ constructor(props) {
                     infowindow.close(map, this.marker);
                   });
 
+                  // When Google Maps API fails >> alert
+                  window.gm_authFailure = () => {
+                      this.showTheMapsModal(true);
+                  };
     })
+
     .catch((error) => {
           this.showTheMapsModal(true);
           });
